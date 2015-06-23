@@ -86,7 +86,7 @@ socket.on('ping', function (data) {
 
 socket.on('positions', function (data) {
 	var device;
-	console.log(positions);
+	console.log(data.positions);
 
 	$.each(data.positions, function(index, value) {
 		device = checkIfDeviceExists(value);
