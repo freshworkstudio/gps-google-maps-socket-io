@@ -83,7 +83,7 @@ socket.on('ping', function (data) {
 
 	var position = new google.maps.LatLng(data.latitude, data.longitude);
 
-	device.path.getPath().unshift(position);
+	device.path.getPath().push(position);
 	device.marker.setPosition(position);
 
 	socket.emit('my other event', { my: 'data' });
@@ -92,9 +92,10 @@ socket.on('ping', function (data) {
 socket.on('positions', function (data) {
 	var device;
 	console.log(data.positions);
-
+	data.positions = data.positions.reverse();
 	$.each(data.positions, function(index, value) {
 		device = checkIfDeviceExists(value);
+		var position = new google.maps.LatLng(value.latitude, value.longitude);
 
 		if(!device.path)
 		{
@@ -108,7 +109,9 @@ socket.on('positions', function (data) {
 		  	device.path.setMap(map);
 		}
 
-		device.path.getPath().push(new google.maps.LatLng(value.latitude, value.longitude));
+		device.marker.position = position;
+
+		device.path.getPath().push(position);
 	})
 
 });
