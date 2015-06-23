@@ -3,7 +3,7 @@ This is a demo applications that uses the [gps-tracking](https://www.npmjs.com/p
 It uses MongoDB to store data coming from the GPS and [Express](expressjs.com) & [Socket.io](http://socket.io/) to serve a mini web-app to see your devices in a Google Map. 
 
 ## DEMO
-You can check out a [demo here](http://gps.freshwork.co/).
+You can check out a [demo here](http://gps.freshwork.co:3000/).
 Actually, it works with real data coming from a real device or emulator.
 
 You can use our demo (and pretty basic) [emulator](gps-tracking-emulator.meteor.com) to send some data to the server of this demo app. 
@@ -12,7 +12,7 @@ You can use our demo (and pretty basic) [emulator](gps-tracking-emulator.meteor.
 - PORT: 8090
 - Model: TK103
 
-![captura de pantalla 2015-06-23 a las 1 54 57](https://cloud.githubusercontent.com/assets/1103494/8299178/16d459de-194b-11e5-9562-4ae450db5cef.png)
+[captura de pantalla 2015-06-23 a las 1 54 57](https://cloud.githubusercontent.com/assets/1103494/8299178/16d459de-194b-11e5-9562-4ae450db5cef.png)
 
 
 # Installation
@@ -41,3 +41,4 @@ I would recommend you to install this in a public server, like a VPS.
 Don't forget to allow traffic in the port you setup the express & socket.io port in your firewall.  
 
 
+[captura de pantalla 2015-06-23 a las 1 43 51](https://cloud.githubusercontent.com/assets/1103494/8299177/16b6985e-194b-11e5-8104-801faac4cbd2.png)
