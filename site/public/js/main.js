@@ -99,6 +99,7 @@ socket.on('positions', function (data) {
 				strokeOpacity: 1.0,
 				strokeWeight: 2
 		  	});
+		  	device.path.setMap(map);
 		}
 
 		device.path.getPath().push(new google.maps.LatLng(value.latitude, value.longitude));
