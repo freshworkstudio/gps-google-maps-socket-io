@@ -29,7 +29,7 @@ MongoClient.connect(mongourl, function(err, db) {
 	};
 
 	io.on('connection', function(socket) {
-		collections.pings.find({}).sort({inserted: -1}).limit(100).toArray(function(err, docs) {
+		collections.pings.find({}).sort({inserted: -1}).limit(300).toArray(function(err, docs) {
 			assert.equal(err, null);
 			socket.emit('positions', {
 				positions: docs
