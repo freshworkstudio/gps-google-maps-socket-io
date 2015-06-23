@@ -1,6 +1,6 @@
 {
   "name": "gps-tracking-maps-socket-io",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Demo App for gps-tracing node.js package",
   "main": "index.js",
   "scripts": {
