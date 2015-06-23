@@ -18,6 +18,20 @@ body{
 	color: #fff;
 }
 
+#nav ul, 
+#nav li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+#nav li strong{
+	display: block;
+	font-size: 16px;
+	text-transform: uppercase;
+	text-decoration: underline;
+	margin-top: 10px;
+}
+
 #waiting{
 	position: absolute;
 	top: 50%;

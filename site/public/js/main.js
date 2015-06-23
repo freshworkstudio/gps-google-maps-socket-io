@@ -16,6 +16,19 @@ google.maps.event.addDomListener(window, 'load', function(){
 	
 });
 
+function displayData(data){
+	$ul = $('<ul>');
+	$.each(data, function(index, value) {
+		$ul.append($('<li>').html("<strong>" + index + "</strong><span>" + value + "</span>"));
+	});
+
+	$(".data").html($ul);
+}
+
+function getDevice(uid){
+	return devices[uid] || null;
+}
+
 function checkIfMapExists(latLng){
 	if(!map) {
 		initialize(latLng);
@@ -28,31 +41,44 @@ function addDevice(uid, latLng){
 	var marker = new google.maps.Marker({
 		position: latLng,
 		map: map,
-		title: 'UID: ' + uid
+		animation: google.maps.Animation.DROP,
+		title: 'UID: ' + uid, 
+		uid: uid
+
 	});
 
 	marker.setMap(map);
+
+	google.maps.event.addListener(marker, 'click', function(){
+		var deviceData = getDevice(this.uid).lastData;
+		console.log(deviceData);
+
+		displayData(deviceData);
+	});
 
 	devices[uid] = {
 		uid: uid,
 		marker: marker
 	}
+
+	return devices[uid];
 }
 
 function checkIfDeviceExists(data){
 	var uid = data.uid;
 
-	console.log(data);
 	if(typeof devices[uid] == "undefined") {
-		addDevice(uid, new google.maps.LatLng(data.data.latitude, data.data.longitude))
+		return addDevice(uid, new google.maps.LatLng(data.data.latitude, data.data.longitude));
 	}
+
+	return devices[uid];
 }
 
 var socket = io.connect(window.location.host);
-socket.on('ping', function (uid, data) {
+socket.on('ping', function (data) {
 
-	checkIfDeviceExists(uid);
+	var device = checkIfDeviceExists(data);
+	device.lastData = data.data;
 
-	console.log(data, data);
 	socket.emit('my other event', { my: 'data' });
 });
