@@ -77,7 +77,7 @@ function checkIfDeviceExists(data){
 
 var socket = io.connect(window.location.host);
 socket.on('ping', function (data) {
-
+	console.log(data);
 	var device = checkIfDeviceExists(data);
 	device.lastData = data;
 
