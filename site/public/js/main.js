@@ -2,9 +2,9 @@ var map;
 var devices = {}
 
 
-function initialize() {
+function initialize(latLng) {
 	var mapOptions = {
-		center: new google.maps.LatLng(-33.543103333333335,-70.62021666666666),
+		center: latLng,
 		zoom: 11
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -16,19 +16,19 @@ google.maps.event.addDomListener(window, 'load', function(){
 	
 });
 
-function checkIfMapExists(){
+function checkIfMapExists(latLng){
 	if(!map) {
-		initialize();
+		initialize(latLng);
 	}
 }
 
 function addDevice(uid, latLng){
-	checkIfMapExists();
+	checkIfMapExists(latLng);
 
 	var marker = new google.maps.Marker({
 		position: latLng,
 		map: map,
-		title: 'Hello World!'
+		title: 'UID: ' + uid
 	});
 
 	marker.setMap(map);
