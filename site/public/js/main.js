@@ -81,7 +81,7 @@ socket.on('ping', function (data) {
 	var device = checkIfDeviceExists(data);
 	device.lastData = data;
 
-	var position = new google.maps.LatLng(value.latitude, value.longitude);
+	var position = new google.maps.LatLng(data.latitude, data.longitude);
 
 	device.path.getPath.push(position);
 	device.marker.setPosition(position);
