@@ -10,7 +10,10 @@ You can use our demo (and pretty basic) [emulator](gps-tracking-emulator.meteor.
 
 - IP: 45.55.74.234
 - PORT: 8090
-- Model: TK103   
+- Model: TK103
+
+![captura de pantalla 2015-06-23 a las 1 54 57](https://cloud.githubusercontent.com/assets/1103494/8299178/16d459de-194b-11e5-9562-4ae450db5cef.png)
+
 
 # Installation
 You'll need: 
