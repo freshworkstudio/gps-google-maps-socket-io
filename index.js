@@ -17,9 +17,8 @@ var options = {
 app.use(express.static('site/public'));
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/site/index.html');
+  res.sendFile(__dirname + '/site/index.html');
 });
-
 
 MongoClient.connect(mongourl, function(err, db) {
 	assert.equal(null, err);
@@ -28,6 +27,16 @@ MongoClient.connect(mongourl, function(err, db) {
 	var collections = {
 		'pings': db.collection('pings')
 	};
+
+	io.on('connection', function(socket) {
+		collections.pings.find({}).sort({inserted: -1}).limit(100).toArray(function(err, docs) {
+			assert.equal(err, null);
+			socket.emit('positions', {
+				positions: docs
+			});
+
+		});
+	});
 
 	var server = gps.server(options, function(device, connection) {
 
@@ -50,11 +59,8 @@ MongoClient.connect(mongourl, function(err, db) {
 		
 
 		device.on("ping",function(data) {
-
-			io.emit('ping', {
-				uid: this.getUID(), 
-				data: data
-			});
+			data.uid = this.getUID();
+			io.emit('ping', data);
 
 			//this = device
 			console.log("I'm here: " + data.latitude + ", " + data.longitude + " (" + this.getUID() + ")");

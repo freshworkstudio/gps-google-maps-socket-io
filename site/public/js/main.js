@@ -58,7 +58,8 @@ function addDevice(uid, latLng){
 
 	devices[uid] = {
 		uid: uid,
-		marker: marker
+		marker: marker, 
+		path: null
 	}
 
 	return devices[uid];
@@ -68,7 +69,7 @@ function checkIfDeviceExists(data){
 	var uid = data.uid;
 
 	if(typeof devices[uid] == "undefined") {
-		return addDevice(uid, new google.maps.LatLng(data.data.latitude, data.data.longitude));
+		return addDevice(uid, new google.maps.LatLng(data.latitude, data.longitude));
 	}
 
 	return devices[uid];
@@ -78,7 +79,31 @@ var socket = io.connect(window.location.host);
 socket.on('ping', function (data) {
 
 	var device = checkIfDeviceExists(data);
-	device.lastData = data.data;
+	device.lastData = data;
 
 	socket.emit('my other event', { my: 'data' });
 });
+
+socket.on('positions', function (data) {
+	var device;
+
+	$.each(data.positions, function(index, value) {
+		device = checkIfDeviceExists(value);
+
+		if(!device.path)
+		{
+			device.path = new google.maps.Polyline({
+				path: [],
+				geodesic: true,
+				strokeColor: '#FF0000',
+				strokeOpacity: 1.0,
+				strokeWeight: 2
+		  	});
+		}
+
+		device.path.getPath().push(new google.maps.LatLng(value.latitude, value.longitude));
+	})
+
+});
+
+
