@@ -1,4 +1,4 @@
-# gps-tracking-demo
+# GPS Tracking Basic Demo Web Application
 This is a demo applications that uses the [gps-tracking](https://www.npmjs.com/package/gps-tracking)   node.js package.
 It uses MongoDB to store data coming from the GPS and [Express](expressjs.com) & [Socket.io](http://socket.io/) to serve a mini web-app to see your devices in a Google Map. 
 
