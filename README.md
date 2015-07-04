@@ -6,7 +6,7 @@ It uses MongoDB to store data coming from the GPS and [Express](expressjs.com) &
 You can check out a [demo here](http://gps.freshwork.co:3000/).
 Actually, it works with real data coming from a real device or emulator.
 
-You can use our demo (and pretty basic) [emulator](gps-tracking-emulator.meteor.com) to send some data to the server of this demo app. 
+You can use our demo (and pretty basic) [emulator](https://gps-tracking-emulator.meteor.com) to send some data to the server of this demo app. 
 
 - IP: 45.55.74.234
 - PORT: 8090
